@@ -26,14 +26,14 @@ For sample data, you can use the provided "SeedData.cs" file to populate the dat
 
 The project is developed using the following technologies and libraries:
 
-- **ASP.NET**: Web application framework.
-- **C#**: Object-oriented programming language.
-- **Entity Framework**: ORM framework for simplifying database operations.
-- **HTML**: Markup language for web pages.
+- **ASP.NET**: Used for building web applications.
+- **C#**: Main programming language for the project.
+- **Entity Framework**: ORM framework used for database operations and data access.
 - **MySQL**: Relational database management system.
-- **CSS**: Styling language for HTML elements.
-- **JavaScript**: Programming language for adding interactivity.
-- **FullCalendar**: JavaScript library for displaying and managing calendars.
+- **HTML**: Markup language for structuring web pages.
+- **CSS**: Styling language for designing the appearance of web pages.
+- **JavaScript**: Programming language used for client-side interactivity.
+- **FullCalendar**: JavaScript library employed for displaying and managing calendars within the application.
 
 These technologies provide the foundation for PETSBLOG, ensuring its functionality and performance.
 
