@@ -9,17 +9,14 @@ To run the project locally, follow these steps:
 1. Open the terminal in the root directory of the project.
 2. Add migrations using the following command:
     ```
-    
     dotnet ef migrations add YourMigrationsName
     ```
 3. Create or update the database with the following command:
     ```
-    
     dotnet ef database update
     ```
 4. Start the project with:
     ```
-    
     dotnet watch run
     ```
 5. Access PETSBLOG by navigating to "http://localhost:5000" in your browser.
