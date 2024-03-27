@@ -1,0 +1,27 @@
+@model Post
+
+<div class="card mt-2">
+	<div class="card-header no-border">
+		<h5 class="card-title">Last Post</h5>
+	</div>
+	<div class="card-body pt-0">
+		<div class="widget-49">
+			<div class="widget-49-title-wrapper">
+				<div class="widget-49-meeting-info">
+					<span class="widget-49-pro-title">@Model.Title</span>
+					<span class="widget-49-meeting-time">
+						@Html.Raw((Model.Content != null && Model.Content.Length > 50 ? Model.Content.Substring(0, 80) +
+															"..." : Model.Content))
+					</span>
+
+				</div>
+			</div>
+			<ol class="widget-49-meeting-points">
+
+			</ol>
+			<div class="widget-49-meeting-action">
+				<a href="/post/details/@Model.Url" class="btn btn-sm btn-flash-border-primary">View All</a>
+			</div>
+		</div>
+	</div>
+</div>

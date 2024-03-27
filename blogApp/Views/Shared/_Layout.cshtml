@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewData["Title"] - PETSBLOG</title>
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+
+
+
+	<link rel="stylesheet" href="~/css/style.css">
+	<link rel="stylesheet" href="~/css/style2.css">
+	<link rel="stylesheet" href="~/css/style3.css">
+	<link rel="stylesheet" href="~/css/style4.css">
+
+	<style>
+		body {
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-color: #083442;
+		}
+
+		a {
+			font-size: 14px;
+			font-weight: 700
+		}
+
+		.form-control {
+			outline: none !important;
+			box-shadow: none !important;
+		}
+
+		.fixed-bottom {
+			position: relative;
+			bottom: 0;
+			width: 100%;
+		}
+
+		footer {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+	<nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
+		<div class="container">
+			<a class="navbar-brand" href="/post/index">
+				<i class="fa-solid fa-shop me-2"></i>
+				<strong>PETBLOG</strong>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="ms-auto d-none d-lg-block">
+					<div class="input-group">
+						<form asp-action="Index" asp-controller="Post" class="d-flex" method="get">
+							<input type="search" class="form-control me-2" name="searchString" id="searchString"
+								placeholder="Arama Filtreleyin" value="@ViewBag.OldSearch">
+							<button type="submit" class="btn btn-success">Search</button>
+						</form>
+					</div>
+				</div>
+
+				@if (User.Identity!.IsAuthenticated)
+				{
+					<ul class="navbar-nav ms-auto">
+						@if (User.IsInRole("admin"))
+						{
+							<li class="nav-item dropdown">
+								<a class="nav-link mx-2 text-uppercase dropdown-toggle" href="#" id="adminDropdown"
+									role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="fa-solid fa-cart-shopping me-1"></i>Admin
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="adminDropdown">
+
+
+
+									<li><a class="dropdown-item" href="/user/UserList">All Users</a></li>
+									<li><a class="dropdown-item" href="/post/list">All
+											Posts</a></li>
+									<li><a class="dropdown-item" href="/event/list/">All Events</a></li>
+									<li><a class="dropdown-item" href="/tag/list/">All Tags</a></li>
+									<li><a class="dropdown-item" href="/category/list/">All Categories</a></li>
+								</ul>
+							</li>
+						}
+
+						@if (User.FindFirst(ClaimTypes.Role) == null)
+						{
+							<li class="nav-item">
+								<a class="user-logout nav-link mx-2 text-uppercase" href="/user/MyProfile">
+									<i class="fa-solid fa-circle-user me-1"></i>@User.FindFirst(ClaimTypes.Name)!.Value
+								</a>
+							</li>
+						}
+						<li class="nav-item dropdown">
+							<a class="nav-link mx-2 text-uppercase dropdown-toggle" href="#" id="adminDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="zmdi zmdi-account"></i>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="adminDropdown">
+
+
+
+								<li><a class="dropdown-item" href="/user/MyProfile">My Profile</a></li>
+								<li><a class="dropdown-item" href="/post/list">My Posts</a></li>
+
+								<li> <a class="dropdown-item" href="/event-list/@User.FindFirst(ClaimTypes.Name)!.Value">My
+										Events</a>
+								</li>
+								<li><a class="dropdown-item" href="/post/createpost">Create Post</a></li>
+								<li><a class="dropdown-item" href="/event/EventCreate">Create Event</a></li>
+								<li><a class="dropdown-item" href="/post/index">All Posts</a></li>
+								<li><a class="dropdown-item" href="/event/list">All Events</a></li>
+								<li>
+									<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal1"
+										href="/user/logout">
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="user-logout nav-link mx-2 text-uppercase" href="/event/calendar">
+								<i class="zmdi zmdi-calendar"></i>
+							</a>
+						</li>
+
+
+
+					</ul>
+				}
+				else
+				{
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link mx-2 text-uppercase" href="/user/login">
+								<i class="fa-solid fa-cart-shopping me-1"></i>Login
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-2 text-uppercase" href="/user/register">
+								<i class="fa-solid fa-circle-user me-1"></i>Register
+							</a>
+						</li>
+					</ul>
+				}
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		@RenderBody()
+	</div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+	<script src="~/js/script.js"></script>
+
+	@RenderSection("Scripts", required: false)
+	@RenderSection("Scripts2", required: false)
+</body>
+<footer class="text-center bg-body-tertiary fixed-bottom">
+	<div class="container">
+		<section>
+			<a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+				href="https://instagram.com/hzuslu" target="_blank" data-mdb-ripple-color="dark">
+				<i class="fab fa-instagram"></i>
+			</a>
+			<a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+				href="https://www.linkedin.com/in/hasan-uslu-308a30223" target="_blank" data-mdb-ripple-color="dark"><i
+					class="fab fa-linkedin"></i>
+			</a>
+			<a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+				href="https://github.com/hzuslu" target="_blank" data-mdb-ripple-color="dark">
+				<i class="fab fa-github"></i>
+			</a>
+
+
+		</section>
+	</div>
+
+	<div class="text-center p-3"
+		style="background-color: rgba(0, 0, 0, 0.05); font-family: Arial, sans-serif; color: #333;">
+		<p style="margin-bottom: 0;">© 2024 <strong>Copyright:</strong> Made By Hasan Uslu — PETBLOG</p>
+	</div>
+
+</footer>
+
+</html>
+
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+	aria-hidden="true">
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to Logout?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger" id="confirm-delete1">Logout</button>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+
+
+		var deleteButtons = document.querySelectorAll(".user-logout");
+
+		document.getElementById("confirm-delete1").addEventListener("click", function () {
+			window.location.href = "/user/logout";
+		});
+	});
+</script>

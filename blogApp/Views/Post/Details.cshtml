@@ -1,0 +1,315 @@
+@model Post
+
+@{
+	ViewData["Title"] = "Post Details Page";
+	var userrrid = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+	var check = Model.Likes.Any(i => i.UserId == userrrid);
+}
+
+
+<style>
+	.date {
+		font-size: 11px
+	}
+
+	.comment-text {
+		font-size: 12px
+	}
+
+	.fs-12 {
+		font-size: 12px
+	}
+
+	.shadow-none {
+		box-shadow: none
+	}
+
+	.name {
+		color: #007bff
+	}
+
+	.cursor:hover {
+		color: blue
+	}
+
+	.cursor {
+		cursor: pointer
+	}
+
+	.textarea {
+		resize: none
+	}
+</style>
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-lg-8">
+			<article>
+				<header class="mb-4">
+					<h1 class="fw-bolder mb-1">@Model.Title</h1>
+					<div class="text-muted fst-italic mb-2">Posted on @Model.PostTime by <a
+							href="/detail/@Model.User.UserName">@Model.User.UserSurname</a></div>
+					<div>
+						@foreach (var tag in @Model.Tags)
+						{
+							<a class="badge bg-secondary text-decoration-none link-light"
+								href="/post/tag/with/@tag.Url">@tag.Text</a>
+						}
+
+					</div>
+				</header>
+				<figure class="mb-4">
+					<img src="~/img/@Model.Image" class="img-fluid rounded" alt=""
+						style="max-width: 100%; height: auto;">
+				</figure>
+				<section class="mb-5">
+					<p class="fs-5 mb-4">@Html.Raw(Model.Content)</p>
+				</section>
+				<div class="mb-5">
+					<form id="likeForm">
+						<input type="hidden" name="PostId" id="PostId" value="@Model.PostId">
+						<input type="hidden" name="UserId" id="UserId" value="@userrrid">
+						@if (check)
+						{
+							<button class="btn btn-sm btn-primary" type="submit" id="likeButton"
+								style="background-color: primary;"><i class="fa fa-thumbs-up"> Like</i></button>
+						}
+						else
+						{
+							<button class="btn btn-sm btn-primary" type="submit" id="likeButton"
+								style="background-color: transparent;"><i class="fa fa-thumbs-up"> Like</i></button>
+						}
+					</form>
+				</div>
+			</article>
+			<div id="comments">
+				@foreach (var comment in Model.Comments)
+				{
+
+					<section>
+
+						<div class="row mb-4">
+							<div class="col-2">
+								<a href="/detail/@comment.User.UserName">
+									<img src="/img/pp/@comment.User.Image" class="img-fluid shadow-1-strong rounded"
+										alt="" />
+								</a>
+							</div>
+
+							<div class="col-8">
+								<a href="/detail/@comment.User.UserName">
+									<p class="mb-2"><strong>@comment.User.UserFirstName</strong></p>
+								</a>
+								<span class="text-muted">@comment.CommentTime.ToString("M")</span>
+								<p>
+									@comment.Content
+								</p>
+							</div>
+
+							<div class="col-2 d-flex align-items-center justify-content-end">
+								@if ((User.FindFirst(ClaimTypes.Role) != null) ||
+													(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value) == comment.UserId))
+								{
+									<form action="" id="delete-comment">
+										<input type="hidden" value="@comment.CommentId" class="comment-id">
+										<a href="#" class="btn btn-sm btn-danger delete-post me-1"
+											data-comment-id="@comment.CommentId" style="background-color: transparent;">
+											<i class="fas fa-trash-alt" style="color: red;"></i>
+										</a>
+									</form>
+								}
+							</div>
+						</div>
+
+					</section>
+					<hr class="my-4" />
+				}
+			</div>
+			<div>
+				<div class="container mt-5">
+					<div class="d-flex justify-content-center row">
+						<div class="col-md-8">
+							<div class="d-flex flex-column comment-section">
+
+								<div class="bg-light p-3 rounded">
+									<form asp-controller="post" asp-action="Details" method="post" id="commentForm">
+										<input type="hidden" name="PostId" id="PostId" value="@Model.PostId">
+										<div class="d-flex flex-row align-items-start mb-3">
+											<div class="avatar">
+												<img src="/img/pp/@(User.FindFirst(ClaimTypes.UserData)!.Value)"
+													class="rounded-circle" alt="" width="70" height="50">
+											</div>
+											<textarea class="form-control ml-3 shadow-none textarea" id="Content"
+												name="Content" placeholder="Write your comment here..."></textarea>
+										</div>
+										<div class="d-flex justify-content-end">
+											<button class="btn btn-primary btn-sm shadow-none" type="submit"
+												id="btnYorumKayit" data-mdb-ripple-init>Send comment</button>
+											<button class="btn btn-outline-primary btn-sm ml-2 shadow-none"
+												type="button">Cancel</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-lg-4">
+
+			<vc:tags-menu></vc:tags-menu>
+			<vc:last-post></vc:last-post>
+		</div>
+	</div>
+</div>
+
+
+
+@section Scripts2 {
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			var isLiked = @check.ToString().ToLower();
+
+			if (isLiked) {
+				$('#likeButton').css("background-color", "blue");
+
+			}
+
+			var likeId = null;
+			var PostId = $('#PostId').val();
+			var UserId = $('#UserId').val();
+
+
+			$("#likeForm").submit(function (event) {
+				event.preventDefault();
+
+				isLiked = !isLiked;
+
+
+				if (isLiked) {
+					$(this).find('#likeButton').css("background-color", "blue");
+					$.post('@Url.Action("AddLike", "Post")', { postId: PostId, userId: UserId }, function (data) {
+
+					});
+				} else {
+					$(this).find('#likeButton').css("background-color", "transparent");
+					$.post('@Url.Action("DeleteLike", "Post")', { postId: PostId, userId: UserId }, function (data) {
+
+					});
+
+				}
+			});
+		});
+	</script>
+}
+
+
+
+
+@section Scripts {
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#Content").on('focus', function () {
+				var val = this.value;
+				this.value = '';
+				this.value = val;
+			});
+
+			$("#btnYorumKayit").click(function () {
+
+				var content = $('#Content').val();
+				if (!content.trim()) {
+					alert("Comment content cannot be empty");
+					return false;
+				}
+
+
+				$.ajax({
+					type: 'POST',
+					url: '@Url.Action("Details")',
+					dataType: 'json',
+					data: {
+						PostId: $('#PostId').val(),
+						content: $('#Content').val(),
+					},
+					success: function (yorum) {
+						var date = new Date(yorum.time);
+						var options = { day: 'numeric', month: 'long' };
+						var formattedDate = date.toLocaleDateString('tr-TR', options);
+
+						$("#comments").append(`<div class="row mb-4">
+										<div class="col-2">
+											<a href="/detail/${yorum.username}">
+												<img src="/img/pp/${yorum.image}" class="img-fluid shadow-1-strong rounded"
+													alt="" />
+											</a>
+										</div>
+
+										<div class="col-8">
+											<a href="/detail/${yorum.username}">
+												<p class="mb-2"><strong>${yorum.name}</strong></p>
+											</a>
+											<span class="text-muted">${formattedDate}</span>
+											<p>
+												${yorum.content}
+											</p>
+										</div>
+
+										<div class="col-2 d-flex align-items-center justify-content-end">
+
+												<form action="" id="delete-comment">
+													<input type="hidden" value="${yorum.commentId}" class="comment-id">
+													<a href="#" class="btn btn-sm btn-danger delete-post me-1"
+														data-comment-id="${yorum.commentId}" style="background-color: transparent;">
+														<i class="fas fa-trash-alt" style="color: red;"></i>
+													</a>
+												</form>
+
+										</div>
+									</div>`);
+
+
+						$('#Content').val('');
+					}
+				});
+
+				return false;
+			});
+
+			$(document).on('click', '.delete-post', function (event) {
+				event.preventDefault();
+
+				var commentId = $(this).data('comment-id');
+				var confirmation = confirm("Are you sure you want to delete this comment?");
+				var deleteButton = $(this);
+
+				if (confirmation) {
+					$.ajax({
+						type: 'POST',
+						url: '/Post/DeleteComment',
+						data: {
+							commentId: commentId,
+						},
+						success: function (response) {
+							if (response.success) {
+								deleteButton.closest('.row.mb-4').remove(); // Yorumun bulunduğu container elementini sil
+							} else {
+								alert("An error occurred while deleting the comment.");
+							}
+						}
+					});
+				}
+
+				return false;
+			});
+
+
+
+		});
+	</script>
+}

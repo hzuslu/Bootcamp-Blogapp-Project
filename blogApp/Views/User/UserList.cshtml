@@ -1,0 +1,312 @@
+@model List<User>
+
+@{
+	ViewData["Title"] = "User List Page";
+}
+
+
+<style>
+	.p-4 {
+		padding: 1.5rem !important;
+	}
+
+	.mb-0,
+	.my-0 {
+		margin-bottom: 0 !important;
+	}
+
+	.shadow-sm {
+		box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+	}
+
+	.user-dashboard-info-box .users-list .thumb {
+		margin-right: 20px;
+	}
+
+	.user-dashboard-info-box .users-list .thumb img {
+		width: 80px;
+		height: 80px;
+		-o-object-fit: cover;
+		object-fit: cover;
+		overflow: hidden;
+		border-radius: 50%;
+	}
+
+	.user-dashboard-info-box .title {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		padding: 30px 0;
+	}
+
+	.user-dashboard-info-box .users-list td {
+		vertical-align: middle;
+	}
+
+	.user-dashboard-info-box td li {
+		margin: 0 4px;
+	}
+
+	.user-dashboard-info-box .table thead th {
+		border-bottom: none;
+	}
+
+	.table.manage-users-top th {
+		border: 0;
+	}
+
+	.user-dashboard-info-box .user-list-favourite-time .user-list-favourite {
+		margin-bottom: 10px;
+	}
+
+	.table.manage-users-top {
+		min-width: 650px;
+	}
+
+	.user-dashboard-info-box .user-list-details ul {
+		color: #969696;
+	}
+
+	.user-list {
+		background: #ffffff;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		border-bottom: 1px solid #eeeeee;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		padding: 20px;
+		-webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.user-list:hover {
+		-webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+		box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+		position: relative;
+		z-index: 99;
+	}
+
+	.user-list:hover a.user-list-favourite {
+		color: #e74c3c;
+		-webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+		box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+	}
+
+	.user-list .user-list-image {
+		margin-right: 25px;
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 80px;
+		flex: 0 0 80px;
+		border: none;
+	}
+
+	.user-list .user-list-image img {
+		width: 80px;
+		height: 80px;
+		-o-object-fit: cover;
+		object-fit: cover;
+	}
+
+	.user-list-title {
+		margin-bottom: 5px;
+	}
+
+	.user-list-details ul {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		margin-bottom: 0px;
+	}
+
+	.user-list-details ul li {
+		margin: 5px 10px 5px 0px;
+		font-size: 13px;
+	}
+
+	.user-list .user-list-favourite-time {
+		margin-left: auto;
+		text-align: center;
+		font-size: 13px;
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 90px;
+		flex: 0 0 90px;
+	}
+
+	.user-list .user-list-favourite-time span {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.user-list .user-list-favourite-time .user-list-favourite {
+		display: inline-block;
+		position: relative;
+		height: 40px;
+		width: 40px;
+		line-height: 40px;
+		border: 1px solid #eeeeee;
+		border-radius: 100%;
+		text-align: center;
+		-webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+		margin-bottom: 20px;
+		font-size: 16px;
+		color: #646f79;
+	}
+
+	.user-list .user-list-favourite-time .user-list-favourite:hover {
+		background: #ffffff;
+		color: #e74c3c;
+	}
+
+	.user-banner .user-list:hover {
+		position: inherit;
+		-webkit-box-shadow: inherit;
+		box-shadow: inherit;
+		z-index: inherit;
+	}
+
+	.bg-white {
+		background-color: #ffffff !important;
+	}
+
+	.p-4 {
+		padding: 1.5rem !important;
+	}
+
+	.mb-0,
+	.my-0 {
+		margin-bottom: 0 !important;
+	}
+
+	.shadow-sm {
+		box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+	}
+
+	.user-dashboard-info-box .users-list .thumb {
+		margin-right: 20px;
+	}
+</style>
+
+
+<div class="container mt-3 mb-4">
+	<div class="col-lg-9 mt-4 mt-lg-0">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+					<table class="table manage-users-top mb-0">
+						<thead>
+							<tr>
+								<th>User</th>
+								<th class="text-center">Register Date</th>
+								<th class="action text-right"></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var user in Model)
+							{
+								@if (int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value) != user.UserId)
+								{
+									<tr class="users-list">
+										<td class="title">
+											<div class="thumb">
+												<a href="/detail/@user.UserName"><img class="img-fluid"
+														src="/img/pp/@user.Image" alt=""></a>
+											</div>
+											<div class="user-list-details">
+												<div class="user-list-info">
+													<div class="user-list-title">
+														<h5 class="mb-0"><a href="/detail/@user.UserName">@user.UserFullName</a>
+														</h5>
+													</div>
+													<div class="user-list-option">
+														<ul class="list-unstyled">
+															<li><i class="fas fa-filter pr-1"></i>@user.Education</li>
+															<li><i class="fas fa-map-marker-alt pr-1"></i>@user.Country</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="user-list-favourite-time text-center">
+											<a class="user-list-favourite order-2 text-danger" href="#"><i
+													class="fas fa-heart"></i></a>
+											<span class="user-list-time order-1">@user.RegisterDate</span>
+										</td>
+										<td>
+											<ul class="list-unstyled mb-0 d-flex justify-content-end">
+												<li><a href="/detail/@user.UserName" class="text-primary" data-toggle="tooltip"
+														title="View"><i class="far fa-eye"></i></a></li>
+												<li><a href="#" class="text-danger delete-user" data-toggle="modal"
+														data-userid="@user.UserId" data-target="#exampleModal" title="Delete"><i
+															class="far fa-trash-alt"></i></a></li>
+											</ul>
+										</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+					<div class="text-center mt-3 mt-sm-3">
+						<ul class="pagination justify-content-center mb-0">
+							<li class="page-item disabled">
+								<a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+							</li>
+							<li class="page-item active">
+								<a class="page-link" href="#">1<span class="sr-only">(current)</span></a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var deleteButtons = document.querySelectorAll(".delete-user");
+
+		deleteButtons.forEach(function (button) {
+			button.addEventListener("click", function (event) {
+				event.preventDefault();
+				var userId = this.dataset.userid;
+				document.getElementById("confirm-delete").dataset.userid = userId;
+			});
+		});
+
+		document.getElementById("confirm-delete").addEventListener("click", function () {
+			var userId = this.dataset.userid;
+			window.location.href = "/user/delete/" + userId;
+		});
+	});
+</script>

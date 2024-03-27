@@ -1,0 +1,5 @@
+{
+  "editor.cursorBlinking": "smooth",
+  "diffEditor.experimental.showEmptyDecorations": false,
+  "editor.mouseWheelZoom": true
+}

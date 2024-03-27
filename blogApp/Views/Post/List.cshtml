@@ -1,0 +1,137 @@
+@model List<Post>
+
+@{
+  ViewData["Title"] = "All Posts";
+}
+
+
+<style>
+	.card {
+		border: none;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.card-img-top {
+		border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+	}
+
+	.card-body {
+		padding: 1rem;
+	}
+
+	.card-title {
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	.card-text {
+		font-size: 0.9rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+	}
+
+	.text-muted {
+		font-size: 0.8rem;
+	}
+
+	.btn {
+		font-size: 0.8rem;
+	}
+</style>
+
+<div class="container">
+	<div class="row row-cols-1 row-cols-md-2 g-3">
+		@foreach (var post in Model)
+		{
+			<div class="col">
+				<div class="card m-2" style="max-width: 540px;">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<a href="/post/details/@post.Url">
+								<img src="/img/@post.Image" style="height: 100%; object-fit: cover;"
+									class="img-fluid rounded-start" />
+							</a>
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title" style="font-family: 'Arial', sans-serif; font-weight: bold;">
+									@post.Title</h5>
+								<p class="card-text" style="font-family: 'Arial', sans-serif;">
+									@Html.Raw(@post.Content!.Substring(0, Math.Min(@post.Content.Length, 40)))...</p>
+								<p class="card-text" style="font-family: 'Arial', sans-serif;">
+									<small class="text-muted">Published by: @post.User.UserFullName,
+										@post.PostTime.ToShortDateString()</small>
+								</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<a href="/edit/@post.Url" class="btn btn-sm btn-warning me-2"
+											style="background-color: transparent;">
+											<i class="fas fa-edit me-1" style="color: yellow;"></i>Edit
+										</a>
+										<a href="" class="btn btn-sm btn-danger delete-post me-5"
+											style="background-color: transparent;" data-toggle="modal"
+											data-postid="@post.Url" data-target="#exampleModal">
+											<i class="fas fa-trash-alt me-1" style="color: red;"></i>Delete
+										</a>
+										@if (post.IsActive)
+										{
+											<span class="text-success me-2">
+												<i class="fas fa-check-circle"></i>
+											</span>
+										}
+										else
+										{
+											<span class="text-danger me-2">
+												<i class="fas fa-times-circle"></i>
+											</span>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var deleteButtons = document.querySelectorAll(".delete-post");
+
+		deleteButtons.forEach(function (button) {
+			button.addEventListener("click", function (event) {
+				event.preventDefault();
+				var postId = this.dataset.postid;
+				document.getElementById("confirm-delete").dataset.postid = postId;
+			});
+		});
+
+		document.getElementById("confirm-delete").addEventListener("click", function () {
+			var postId = this.dataset.postid;
+			window.location.href = "/Delete/" + postId;
+		});
+	});
+</script>

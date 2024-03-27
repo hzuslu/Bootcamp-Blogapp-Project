@@ -1,0 +1,161 @@
+@model UserEditModel
+
+@{
+  ViewData["Title"] = "My Profile Page";
+}
+
+
+<style>
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+  }
+
+  .profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+  }
+
+  .profile-button:hover {
+    background: #682773
+  }
+
+  .profile-button:focus {
+    background: #682773;
+    box-shadow: none
+  }
+
+  .profile-button:active {
+    background: #682773;
+    box-shadow: none
+  }
+
+  .back:hover {
+    color: #682773;
+    cursor: pointer
+  }
+
+  .labels {
+    font-size: 11px
+  }
+
+  .add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+  }
+</style>
+
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-3 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle mt-5" width="150px" src="/img/pp/@Model.Image">
+        <span class="font-weight-bold">@Model.UserSurname</span>
+        <span class="text-black-50">@Model.Email</span>
+        <span> </span>
+
+        <form asp-action="MyProfile" asp-controller="User" method="post" enctype="multipart/form-data">
+
+          <input type="hidden" asp-for="UserFirstName" />
+          <input type="hidden" asp-for="UserSurname" />
+          <input type="hidden" asp-for="Phone" />
+          <input type="hidden" asp-for="Email" />
+          <input type="hidden" asp-for="Address" />
+          <input type="hidden" asp-for="Country" />
+          <input type="hidden" asp-for="City" />
+          <input type="hidden" asp-for="ZipCode" />
+          <input type="hidden" asp-for="Education" />
+
+
+          <div class="mb-4">
+            <label for="imageFile" class="form-label"></label>
+            <input type="file" name="imageFile" id="imageFile" class="form-control" />
+            <span class="text-danger">@ViewBag.ImageFileError</span>
+          </div>
+
+          <button type="submit" class="btn btn-success">Kaydet</button>
+        </form>
+      </div>
+
+    </div>
+
+
+
+
+    <div class="col-md-8 border-right">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Profile Settings</h4>
+        </div>
+
+        <form asp-action="MyProfile" asp-controller="User" method="post">
+
+          <input type="hidden" asp-for="Image" />
+
+
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <label asp-for="UserFirstName" class="form-label">First Name<span class="text-danger"></span></label>
+              <input asp-for="UserFirstName" class="form-control" placeholder="Enter your first name" />
+              <span asp-validation-for="UserFirstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+              <label asp-for="UserSurname" class="form-label">Last Name<span class="text-danger"></span></label>
+              <input asp-for="UserSurname" class="form-control" placeholder="Enter your last name" />
+              <span asp-validation-for="UserSurname" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="Phone" class="form-label">Phone<span class="text-danger"></span></label>
+            <input asp-for="Phone" class="form-control" placeholder="Enter your phone number" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="Email" class="form-label">Email<span class="text-danger"></span></label>
+            <input asp-for="Email" class="form-control" placeholder="Enter your email address" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="Address" class="form-label">Address<span class="text-danger"></span></label>
+            <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="Country" class="form-label">Country<span class="text-danger"></span></label>
+            <input asp-for="Country" class="form-control" placeholder="Enter your country" />
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="City" class="form-label">City<span class="text-danger"></span></label>
+            <input asp-for="City" class="form-control" placeholder="Enter your city" />
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="ZipCode" class="form-label">Zip Code<span class="text-danger"></span></label>
+            <input asp-for="ZipCode" class="form-control" placeholder="Enter your zip code" />
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <label asp-for="Education" class="form-label">Education<span class="text-danger"></span></label>
+            <input asp-for="Education" class="form-control" placeholder="Enter your education" />
+          </div>
+
+          <div class="mt-5 text-center">
+            <button type="submit" class="btn btn-primary profile-button">Save Profile</button>
+          </div>
+        </form>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

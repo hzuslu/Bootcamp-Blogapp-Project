@@ -1,0 +1,213 @@
+@model List<Event>
+
+
+@{
+	ViewData["Title"] = "Calendar Page";
+}
+
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+		rel="stylesheet">
+
+
+	@* <script>
+	$(document).ready(function () {
+	var date = new Date();
+	var d = date.getDate();
+	var m = date.getMonth();
+	var y = date.getFullYear();
+
+	var calendar = $('#calendar').fullCalendar({
+	header: {
+	left: 'title',
+	center: 'agendaDay,agendaWeek,month',
+	right: 'prev,next today'
+	},
+	editable: true,
+	firstDay: 1,
+	selectable: true,
+	defaultView: 'month',
+	axisFormat: 'h:mm',
+	columnFormat: {
+	month: 'ddd',
+	week: 'ddd d',
+	day: 'dddd M/d',
+	agendaDay: 'dddd d'
+	},
+	titleFormat: {
+	month: 'MMMM yyyy',
+	week: "MMMM yyyy",
+	day: 'MMMM yyyy'
+	},
+	allDaySlot: true,
+	selectHelper: true,
+	droppable: true,
+	drop: function (date, allDay) {
+	var originalEventObject = $(this).data('eventObject');
+	var copiedEventObject = $.extend({}, originalEventObject);
+	copiedEventObject.start = date;
+	copiedEventObject.allDay = allDay;
+	$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+	if ($('#drop-remove').is(':checked')) {
+	$(this).remove();
+	}
+	},
+	events: []
+	});
+
+	var events = @Html.Raw(Json.Serialize(Model));
+	console.log("Events:", events); // Konsol logu ekle
+	events.forEach(function (event) {
+	console.log("Event:", event); // Konsol logu ekle
+	calendar.fullCalendar('renderEvent', {
+	title: event.eventTitle,
+	start: new Date(event.startTime),
+	end: null,
+	allDay: true,
+	className: 'important',
+	url: null
+	});
+	});
+	});
+	</script> *@
+
+
+
+	<script>
+		$(document).ready(function () {
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+
+			var calendar = $('#calendar').fullCalendar({
+				header: {
+					left: 'title',
+					center: 'agendaDay,agendaWeek,month',
+					right: 'prev,next today'
+				},
+				editable: true,
+				firstDay: 1,
+				selectable: true,
+				defaultView: 'month',
+				axisFormat: 'h:mm',
+				columnFormat: {
+					month: 'ddd',
+					week: 'ddd d',
+					day: 'dddd M/d',
+					agendaDay: 'dddd d'
+				},
+				titleFormat: {
+					month: 'MMMM yyyy',
+					week: "MMMM yyyy",
+					day: 'MMMM yyyy'
+				},
+				allDaySlot: true,
+				selectHelper: true,
+				droppable: true,
+				drop: function (date, allDay) {
+					var originalEventObject = $(this).data('eventObject');
+					var copiedEventObject = $.extend({}, originalEventObject);
+					copiedEventObject.start = date;
+					copiedEventObject.allDay = allDay;
+					$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+					if ($('#drop-remove').is(':checked')) {
+						$(this).remove();
+					}
+				},
+				events: [
+		@foreach (var item in Model)
+		{
+			<text>
+							{
+								title: '@item.EventTitle',
+							start: '@item.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+							allDay: true
+							},
+			</text>
+		}
+				]
+			});
+
+			// events dizisinin içeriğini kontrol etmek için console'da gösterelim
+			console.log(calendar.fullCalendar('clientEvents'));
+
+		});
+	</script>
+
+	<style>
+
+
+		#wrap {
+			width: 1100px;
+			margin: 0 auto;
+		}
+
+		#external-events {
+			float: left;
+			width: 150px;
+			padding: 0 10px;
+			text-align: left;
+		}
+
+		#external-events h4 {
+			font-size: 16px;
+			margin-top: 0;
+			padding-top: 1em;
+		}
+
+		.external-event {
+			/* try to mimick the look of a real event */
+			margin: 10px 0;
+			padding: 2px 4px;
+			background: #3366CC;
+			color: #fff;
+			font-size: .85em;
+			cursor: pointer;
+		}
+
+		#external-events p {
+			margin: 1.5em 0;
+			font-size: 11px;
+			color: #666;
+		}
+
+		#external-events p input {
+			margin: 0;
+			vertical-align: middle;
+		}
+
+		#calendar {
+			/* 		float: right; */
+			margin: 0 auto;
+			padding-top: 30px;
+			width: 900px;
+			border-radius: 6px;
+			box-shadow: 0 1px 2px #C3C3C3;
+			-webkit-box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+			-moz-box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+			box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+		}
+	</style>
+</head>
+
+<body>
+	<div id='wrap'>
+
+		<div id='calendar'></div>
+
+		<div style='clear:both'></div>
+	</div>
+</body>
+
+</html>

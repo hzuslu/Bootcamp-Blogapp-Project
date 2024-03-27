@@ -1,0 +1,111 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = blogApp
+build_property.RootNamespace = blogApp
+build_property.ProjectDir = C:\Users\hasan\OneDrive\Desktop\ASP.NET-Courses\blogApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\hasan\OneDrive\Desktop\ASP.NET-Courses\blogApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Category/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Event/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcQ2FsZW5kYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Event/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Event/EventCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRXZlbnRDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Event/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Post/CreatePost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxDcmVhdGVQb3N0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Post/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Post/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Post/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Post/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Shared/Components/Author/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQXV0aG9yXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Shared/Components/Calendar/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2FsZW5kYXJcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Shared/Components/LastPost/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTGFzdFBvc3RcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Shared/Components/TagsMenu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVGFnc01lbnVcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/Tag/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/User/MyProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxNeVByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/User/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/User/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/User/UserList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hasan/OneDrive/Desktop/ASP.NET-Courses/blogApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

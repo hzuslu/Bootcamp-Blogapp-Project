@@ -1,0 +1,60 @@
+@model EventCreateModel
+
+
+@{
+	ViewData["Title"] = "Event Edit Page";
+}
+
+
+<div class="row mt-4">
+	<div class="col-12">
+		<div class="bg-white p-4">
+			<form asp-action="Edit" method="post">
+				<input type="hidden" asp-for="EventId">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+				<div class="mb-3">
+					<label asp-for="EventTitle" class="form-label"></label>
+					<input asp-for="EventTitle" class="form-control">
+					<span asp-validation-for="EventTitle" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Location" class="form-label"></label>
+					<input asp-for="Location" class="form-control">
+					<span asp-validation-for="Location" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="StartTime" class="form-label"></label>
+					<input asp-for="StartTime" type="datetime-local" class="form-control">
+					<span asp-validation-for="StartTime" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="CategoryId" class="form-label">Category <span asp-validation-for="CategoryId"
+							class="text-danger"></span></label>
+					<select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-select form-select-lg">
+						<option value="">Choose a Category</option>
+					</select>
+				</div>
+
+
+				<button type="submit" class="btn btn-primary">Save</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.7.0/tinymce.min.js"></script>
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'autolink link image lists print preview',
+			toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image | preview print | code',
+			autosave_ask_before_unload: false
+		});
+	</script>
+}

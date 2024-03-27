@@ -1,0 +1,124 @@
+@{
+  ViewData["Title"] = "User Page";
+}
+
+
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f8f9fa;
+	}
+
+	.container {
+		padding: 20px;
+	}
+
+	.card {
+		background-color: #fff;
+		border-radius: .25rem;
+		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+	}
+
+	.card-body {
+		padding: 20px;
+	}
+
+	.user-img {
+		border-radius: 50%;
+		width: 150px;
+		height: 150px;
+		object-fit: cover;
+	}
+
+	.progress-bar {
+		height: 5px;
+	}
+</style>
+
+
+<div class="container">
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="text-center">
+						<img src="/img/pp/@Model.Image" alt="User" class="user-img">
+						<h4>@Model.UserName</h4>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="row mb-3">
+						<div class="col-sm-3">
+							<h6>Full Name</h6>
+						</div>
+						<div class="col-sm-9 text-secondary">
+							@Model.UserFullName
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3">
+							<h6>Email</h6>
+						</div>
+						<div class="col-sm-9 text-secondary">
+							@Model.Email
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3">
+							<h6>Phone</h6>
+						</div>
+						<div class="col-sm-9 text-secondary">
+							@Model.Phone
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3">
+							<h6>Address</h6>
+						</div>
+						<div class="col-sm-9 text-secondary">
+							@Model.City @Model.Country
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3">
+							<h6>Register Date</h6>
+						</div>
+						<div class="col-sm-9 text-secondary">
+							@Model.RegisterDate.ToString("dd MMMM yyyy")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-3">
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Total Posts</h5>
+					<small>@(Model.Post.Count)</small>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Total Comments</h5>
+					<small>@(Model.Comments.Count)</small>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Total Likes</h5>
+					<small>@(Model.Likes.Count)</small>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

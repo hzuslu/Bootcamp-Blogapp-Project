@@ -1,0 +1,76 @@
+@model LoginModel
+
+@{
+	ViewData["Title"] = "Login Page";
+}
+
+<section class="background-radial-gradient overflow-hidden">
+
+
+	<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+		<div class="row gx-lg-5 align-items-center mb-5">
+			<div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+				<h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+					 <br />
+					<span style="color: hsl(218, 81%, 75%)">Login your account</span>
+				</h1>
+
+			</div>
+
+			<div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+				<div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+				<div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+				<div class="card bg-glass">
+					<div class="card-body px-4 py-5 px-md-5">
+						<form asp-controller="User" asp-action="Login" method="post">
+
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+							<h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account
+							</h5>
+
+							<div class="form-outline mb-4">
+								<label asp-for="Email" class="form-label">Email address <span asp-validation-for="Email"
+										class="text-danger"></span></label>
+								<input asp-for="Email" class="form-control form-control-lg" />
+
+
+							</div>
+
+							<div class="form-outline mb-4">
+								<label asp-for="Password" class="form-label">Password <span
+										asp-validation-for="Password" class="text-danger"></span>
+								</label>
+								<input asp-for="Password" type="password" class="form-control form-control-lg" />
+
+							</div>
+
+
+
+							<div class="form-check d-flex align-items-center mb-4">
+								<input class="form-check-input me-2" type="checkbox" id="Remember" asp-for="Remember" />
+								<label class="form-check-label" for="Remember">
+									Remember Me
+								</label>
+							</div>
+
+
+							<div class="pt-1 mb-4">
+								<button class="btn btn-dark btn-lg btn-block justify-content-center"
+									type="submit">Login</button>
+							</div>
+
+							<p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/user/register"
+									style="color: #393f81;">Register here</a></p>
+							<a href="#!" class="small text-muted">Terms of use.</a>
+							<a href="#!" class="small text-muted">Privacy policy</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
