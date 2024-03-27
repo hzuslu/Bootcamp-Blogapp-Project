@@ -19,7 +19,6 @@ To run the project locally, follow these steps:
     ```
     dotnet watch run
     ```
-5. Access PETSBLOG by navigating to "http://localhost:5000" in your browser.
 
 For sample data, you can use the provided "SeedData.cs" file to populate the database before starting the project.
 
