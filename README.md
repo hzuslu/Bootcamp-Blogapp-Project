@@ -30,6 +30,7 @@ The project is developed using the following technologies and libraries:
 - **C#**: Object-oriented programming language.
 - **Entity Framework**: ORM framework for simplifying database operations.
 - **HTML**: Markup language for web pages.
+- **MySQL**: Relational database management system.
 - **CSS**: Styling language for HTML elements.
 - **JavaScript**: Programming language for adding interactivity.
 - **FullCalendar**: JavaScript library for displaying and managing calendars.
