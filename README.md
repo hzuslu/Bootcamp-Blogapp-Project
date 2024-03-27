@@ -37,6 +37,9 @@ The project is developed using the following technologies and libraries:
 
 These technologies provide the foundation for PETSBLOG, ensuring its functionality and performance.
 
+**Note**: For better viewing experience, it's recommended to use Google Chrome browser in dark mode.
+
+
 ## Contact Information
 For inquiries, feedback, or contributions, feel free to reach out:
 
